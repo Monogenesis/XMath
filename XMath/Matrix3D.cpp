@@ -1,5 +1,5 @@
 #include "Matrix3D.hpp"
-
+#include "Vector3D.hpp";
 
 
 
@@ -123,6 +123,11 @@
 		);
 	}
 
+	bool Matrix3D::operator!=(const Matrix3D& other)
+	{
+		return !(*this == other);
+	}
+
 
 	bool Matrix3D::operator == (const Matrix3D& other)
 	{	
@@ -135,10 +140,6 @@
 
 	}
 
-	bool operator == (const Matrix3D& lhs, const Matrix3D& rhs)
-	{
-		return Matrix3D{ lhs } == rhs;
-	}
 
 	Matrix3D operator + (const Matrix3D& lhs, const Matrix3D& rhs)
 	{
@@ -174,6 +175,29 @@
 
 		return result;
 	}
+
+	 float Determinant(const Matrix3D& matrix) {
+		 return (	matrix(0, 0) * (matrix(1, 1) * matrix(2, 2) - matrix(1, 2) * matrix(2, 1))
+				+	matrix(0, 1) * (matrix(1, 2) * matrix(2, 0) - matrix(1, 0) * matrix(2, 2))
+				+	matrix(0, 2) * (matrix(1, 0) * matrix(2, 1) - matrix(1, 1) * matrix(2, 0)));
+	 }
+
+	 Matrix3D Inverse(const Matrix3D& matrix) {
+		 const Vector3D& a = matrix[0];
+		 const Vector3D& b = matrix[1];
+		 const Vector3D& c = matrix[2];
+
+		 Vector3D r0 = Cross(b, c);
+		 Vector3D r1 = Cross(c, a);
+		 Vector3D r2 = Cross(a, b);
+
+		 float invDet = 1.0f / Dot(r2, c);
+
+		 return (Matrix3D(	r0.x * invDet, r0.y * invDet, r0.z * invDet,
+							r1.x * invDet, r1.y * invDet, r1.z * invDet,
+							r2.x * invDet, r2.y * invDet, r2.z * invDet
+						));
+	 }
 
 	std::ostream& operator<<(std::ostream& stream, const Matrix3D& matrix)
 	{

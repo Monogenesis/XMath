@@ -82,3 +82,34 @@ TEST(TestMatrixF, scalarMultiplicationPropterties) {
 	ASSERT_EQ(scalarT * (A + B), scalarT * A + scalarT * B);
 	ASSERT_EQ((scalarS + scalarT) * A , scalarS * A + scalarT * A);
 }
+
+TEST(TestMatrixF, determinantPropterties) {
+	Matrix3D A = { 1,1,1,
+		1,2,1,
+		0,2,1 };
+	Matrix3D B = { 2,2,2,
+		2,2,2,
+		2,2,2
+	};
+	Matrix3D I = {	1,0,0,
+					0,1,0,
+					0,0,1
+	};
+
+	float scalarT = 12;
+
+	// Identity
+	ASSERT_EQ(Determinant(I), 1);
+
+	// Transposed matrix
+	ASSERT_EQ(Determinant(Transpose(A)), Determinant(A));
+
+	// Inverse matrix
+	ASSERT_EQ(Determinant(Inverse(A)), 1 / Determinant(A));
+
+	// Product rule
+	ASSERT_EQ(Determinant(A * B), Determinant(A) * Determinant(B));
+
+	// Scalar factorization
+	ASSERT_EQ(Determinant(scalarT * A), (scalarT * scalarT * scalarT) * Determinant(A));
+}

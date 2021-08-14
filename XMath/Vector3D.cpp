@@ -63,6 +63,11 @@
 		return result;
 	}
 
+	bool Vector3D::operator!=(const Vector3D& vector)
+	{
+		return !(*this == vector);
+	}
+
 	inline Vector3D operator + (const Vector3D& lhs, const Vector3D& rhs) {
 		return Vector3D{ lhs } += rhs;
 	}

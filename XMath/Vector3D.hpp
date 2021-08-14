@@ -28,6 +28,8 @@ struct Vector3D
 
 	bool operator == (const Vector3D& vector);
 
+	bool operator != (const Vector3D& vector);
+
 	friend bool operator == (const Vector3D& lhs, const Vector3D& rhs);
 
 	friend Vector3D operator + (const Vector3D& lhs, const Vector3D& rhs);
