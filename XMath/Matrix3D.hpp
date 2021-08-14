@@ -41,33 +41,22 @@ public:
 
 	Vector3D operator * (const Vector3D& v);
 
+	friend bool operator == (const Matrix3D& lhs, const Matrix3D& rhs);
+	
+	friend Matrix3D operator + (const Matrix3D& lhs, const Matrix3D& rhs);
 
+	friend Matrix3D operator - (const Matrix3D& lhs, const Matrix3D& rhs);
+
+	friend Matrix3D operator * (const Matrix3D& lhs, const Matrix3D& rhs);
+
+	friend Matrix3D operator * (const Matrix3D& lhs, float scalar);
+
+	friend Matrix3D operator * (float scalar, Matrix3D& rhs);
+
+	friend Matrix3D Transpose(const Matrix3D& matrix);
+
+	friend std::ostream& operator<<(std::ostream& stream, const Matrix3D& vector);
 
 	
 };
 
-inline bool operator == (const Matrix3D& lhs, const Matrix3D& rhs);
-
-inline Matrix3D operator + (const Matrix3D& lhs, const Matrix3D& rhs);
-
-inline Matrix3D operator - (const Matrix3D& lhs, const Matrix3D& rhs);
-
-inline Matrix3D operator * (const Matrix3D& lhs, const Matrix3D& rhs);
-
-inline Matrix3D operator * (const Matrix3D& lhs, float scalar);
-
-inline Matrix3D operator * (float scalar, Matrix3D& rhs);
-
-//inline Matrix3D Transpose(const Matrix3D& matrix);
-inline Matrix3D Transpose(const Matrix3D& matrix)
-{
-	Matrix3D result{ matrix(0, 0), matrix(1, 0), matrix(2,0),
-					matrix(0, 1), matrix(1, 1), matrix(2, 1),
-					matrix(0, 2), matrix(1, 2), matrix(2, 2),
-	};
-
-	return result;
-}
-
-
-std::ostream& operator<<(std::ostream& stream, const Matrix3D& vector);
