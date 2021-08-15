@@ -61,6 +61,14 @@ public:
 
 	friend Matrix3D Inverse(const Matrix3D& matrix);
 
+	friend Matrix3D MakeRoationX(float t);
+
+	friend Matrix3D MakeRoationY(float t);
+
+	friend Matrix3D MakeRoationZ(float t);
+
+	friend Matrix3D MakeRoation(float t, const Vector3D& vec);
+
 	friend std::ostream& operator<<(std::ostream& stream, const Matrix3D& vector);
 
 	

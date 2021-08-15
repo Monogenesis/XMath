@@ -199,6 +199,60 @@
 						));
 	 }
 
+	 Matrix3D MakeRoationX(float t) {
+
+		 float c = cos(t);
+		 float s = sin(t);
+
+		 return Matrix3D{ 1.0f, 0.0f, 0.0f,
+							0.0f, c, -s,
+							0.0f, s, c
+				};
+	 }
+
+	 Matrix3D MakeRoationY(float t) {
+
+		 float c = cos(t);
+		 float s = sin(t);
+
+		 return Matrix3D{	c, 0.0f, s,
+							0.0f, 1.0f, 0.0f,
+							-s, 0.0f, c
+				};
+	 }
+
+	 Matrix3D MakeRoationZ(float t) {
+
+		 float c = cos(t);
+		 float s = sin(t);
+
+		 return Matrix3D{	c, -s, 0.0f,
+							s, c, 0.0f,
+							0.0f, 0.0f, 1.0f
+				};
+	 }
+
+	 Matrix3D MakeRoation(float t, const Vector3D& vec) {
+
+		 float c = cos(t);
+		 float s = sin(t);
+		 float d = 1.0f - c;
+
+		 float x = vec.x * d;
+		 float y = vec.y * d;
+		 float z = vec.z * d;
+
+		 float vecXvecY = x * vec.y;
+		 float vecXvecZ = x * vec.z;
+		 float vecYvecZ = y * vec.z;
+
+		 return Matrix3D{ c + x * vec.x, vecXvecY - s * vec.z, vecXvecZ + s * vec.y,
+							vecXvecY + s * vec.z, c + y * vec.y, vecYvecZ - s * vec.x,
+							vecXvecZ - s * vec.y, vecYvecZ + s * vec.x, c + z * vec.z
+				};
+
+	 }
+
 	std::ostream& operator<<(std::ostream& stream, const Matrix3D& matrix)
 	{
 		stream	<< matrix(0, 0) << " " << matrix(0, 1) << " " << matrix(0, 2) << " \n"
