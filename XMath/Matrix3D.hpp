@@ -69,6 +69,14 @@ public:
 
 	friend Matrix3D MakeRoation(float t, const Vector3D& vec);
 
+	friend Matrix3D MakeReflection(const Vector3D& vec);
+
+	friend Matrix3D MakeInvolution(const Vector3D& vec);
+
+	friend Matrix3D MakeScale(float sx, float sy, float sz);
+
+	friend Matrix3D MakeScale(float s, const Vector3D& vec);
+
 	friend std::ostream& operator<<(std::ostream& stream, const Matrix3D& vector);
 
 	

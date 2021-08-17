@@ -253,7 +253,74 @@
 
 	 }
 
-	std::ostream& operator<<(std::ostream& stream, const Matrix3D& matrix)
+	 Matrix3D MakeReflection(const Vector3D& vec) {
+		 float x = vec.x * -2.0f;
+		 float y = vec.y * -2.0f;
+		 float z = vec.z * -2.0f;
+		 float vecXvecY = x * vec.y;
+		 float vecXvecZ = x * vec.z;
+		 float vecYvecZ = y * vec.z;
+
+		 return Matrix3D{	x * vec.x + 1.0f, vecXvecY,  vecXvecZ,
+							vecXvecY, y * vec.y + 1.0f, vecYvecZ,
+							vecXvecZ, vecYvecZ, z * vec.z + 1.0f,
+		 };
+
+	 }
+
+	 Matrix3D MakeInvolution(const Vector3D& vec) {
+		 float x = vec.x * 2.0f;
+		 float y = vec.y * 2.0f;
+		 float z = vec.z * 2.0f;
+		 float vecXvecY = x * vec.y;
+		 float vecXvecZ = x * vec.z;
+		 float vecYvecZ = y * vec.z;
+
+		 return Matrix3D{ x * vec.x - 1.0f, vecXvecY,  vecXvecZ,
+					vecXvecY, y * vec.y - 1.0f, vecYvecZ,
+					vecXvecZ, vecYvecZ, z * vec.z - 1.0f,
+		 };
+	 }
+
+	 Matrix3D MakeScale(float sx, float sy, float sz)
+	 {
+		 return Matrix3D{	sx, 0.0f, 0.0f,
+							0.0f, sy, 0.0f,
+							0.0f, 0.0f, sz
+		 };
+	 }
+
+	 Matrix3D MakeScale(float s, const Vector3D& vec)
+	 {
+		 s -= 1.0f;
+		 float x = vec.x * s;
+		 float y = vec.y * s;
+		 float z = vec.z * s;
+		 float vecXvecY = x * vec.y;
+		 float vecXvecZ = x * vec.z;
+		 float vecYvecZ = y * vec.z;
+
+		 return Matrix3D{ x * vec.x + 1.0f, vecXvecY,  vecXvecZ,
+					vecXvecY, y * vec.y + 1.0f, vecYvecZ,
+					vecXvecZ, vecYvecZ, z * vec.z + 1.0f,
+		 };
+	 }
+
+	 Matrix3D MakeSkew(float t, const Vector3D& dir, const Vector3D& projDir) {
+		 t = tan(t);
+		 float x = dir.x * t;
+		 float y = dir.y * t;
+		 float z = dir.z * t;
+
+		 return Matrix3D{	x * projDir.x + 1.0f, x * projDir.y, x * projDir.z,
+							y * projDir.x, y * projDir.y + 1.0f, y * projDir.z,
+							z * projDir.x, z * projDir.y, z * projDir.z + 1.0f
+		 };
+
+
+	 }
+
+	 std::ostream& operator<<(std::ostream& stream, const Matrix3D& matrix)
 	{
 		stream	<< matrix(0, 0) << " " << matrix(0, 1) << " " << matrix(0, 2) << " \n"
 				<< matrix(1, 0) << " " << matrix(1, 1) << " " << matrix(1, 2) << " \n"
