@@ -77,6 +77,9 @@ public:
 
 	friend Matrix3D MakeScale(float s, const Vector3D& vec);
 
+	friend Matrix3D MakeSkew(float t, const Vector3D& dir, const Vector3D& projectedDir);
+
+
 	friend std::ostream& operator<<(std::ostream& stream, const Matrix3D& vector);
 
 	
