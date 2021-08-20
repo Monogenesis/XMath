@@ -16,5 +16,5 @@ I always wanted to create my own game engine from scratch. Because there is a lo
 
 ## Lessons learned
 
-* Vector and matrix algebra
+* Math for game engines
 * Learning C++
