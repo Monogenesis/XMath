@@ -10,8 +10,8 @@ I always wanted to create my own game engine from scratch. Because there is a lo
 
 * Vector3D
 * Point3D
-* Matrix3D
-* Matrix4D
+* Matrix3D/4D
+* Quaternion
 * Transform4D
 
 ## Lessons learned
