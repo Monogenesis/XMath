@@ -32,8 +32,6 @@ struct Vector3D
 
 	friend bool operator == (const Vector3D& lhs, const Vector3D& rhs);
 
-	friend Vector3D operator + (const Vector3D& lhs, const Vector3D& rhs);
-
 	friend Vector3D operator * (const Vector3D& vector, float scalar);
 
 	friend Vector3D operator * (float scalar, const Vector3D& vector);
@@ -43,6 +41,8 @@ struct Vector3D
 	friend Vector3D operator - (const Vector3D& vector);
 
 	friend Vector3D operator - (const Vector3D& lhs, const Vector3D& rhs);
+
+	friend Vector3D operator + (const Vector3D& lhs, const Vector3D& rhs);
 
 	friend float Magnitude(const Vector3D& vector);
 

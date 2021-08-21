@@ -1,5 +1,6 @@
 #include "Matrix4D.hpp"
-#include "Matrix3D.hpp"
+
+
 
 
 Matrix4D::Matrix4D(	float n00, float n01, float n02, float n03, 
@@ -63,16 +64,17 @@ Matrix4D Inverse(const Matrix4D& matrix)
 	u *= invDet;
 	v *= invDet;
 
-	Vector3D r0 = Cross(b, v) + t * y;
-	Vector3D r1 = Cross(v, a) - t * x;
-	Vector3D r2 = Cross(d, u) + s * w;
-	Vector3D r3 = Cross(u, c) - s * z;
+	Vector3D r0 = Cross(b, v) + (t * y);
+	Vector3D r1 = Cross(v, a) - (t * x);
+	Vector3D r2 = Cross(d, u) + (s * w);
+	Vector3D r3 = Cross(u, c) - (s * z);
 
 	return Matrix4D{	r0.x, r0.y, r0.z, -Dot(b, t),
 						r1.x, r1.y, r1.z, Dot(a, t),
 						r2.x, r2.y, r2.z, -Dot(d, s),
 						r3.x, r3.y, r3.z, Dot(c, s)
 					};
+
 }
 
 

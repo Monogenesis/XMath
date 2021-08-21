@@ -143,13 +143,19 @@
   <ItemGroup>
     <ClInclude Include="Matrix3D.hpp" />
     <ClInclude Include="Matrix4D.hpp" />
+    <ClInclude Include="Point3D.hpp" />
+    <ClInclude Include="Quaternion.hpp" />
     <ClInclude Include="Sandbox.hpp" />
+    <ClInclude Include="Transform4D.hpp" />
     <ClInclude Include="Vector3D.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Matrix3D.cpp" />
     <ClCompile Include="Matrix4D.cpp" />
+    <ClCompile Include="Point3D.cpp" />
+    <ClCompile Include="Quaternion.cpp" />
     <ClCompile Include="Sandbox.cpp" />
+    <ClCompile Include="Transform4D.cpp" />
     <ClCompile Include="Vector3D.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
