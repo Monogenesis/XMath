@@ -8,10 +8,13 @@ I always wanted to create my own game engine from scratch. Because there is a lo
 
 ## Current features
 
-* 3 dimensional vector operations
-* 3 dimensional matrix operations
+* Vector3D
+* Point3D
+* Matrix3D
+* Matrix4D
+* Transform4D
 
 ## Lessons learned
 
-* Vector and matrix algebra
+* Math for game engines
 * Learning C++
