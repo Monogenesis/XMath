@@ -5,34 +5,33 @@
 
 struct Transform4D : Matrix4D
 {
-	private:
+private:
+	float n[4][4]; // Column major order
 
-		float n[4][4]; // Column major order
+public:
+	Transform4D() = default;
 
-	public:
+	Transform4D(float n00, float n01, float n02, float n03,
+				float n10, float n11, float n12, float n13,
+				float n20, float n21, float n22, float n23);
 
-		Transform4D() = default;
+	Transform4D(const Vector3D &a, const Vector3D &b, const Vector3D &c, const Vector3D &p);
 
-		Transform4D(float n00, float n01, float n02, float n03,
-					float n10, float n11, float n12, float n13,
-					float n20, float n21, float n22, float n23);
+	Vector3D &operator[](int j);
 
-		Transform4D(const Vector3D& a, const Vector3D& b, const Vector3D& c, const Vector3D& p);
+	const Vector3D &operator[](int j) const;
 
-		Vector3D& operator [] (int j);
+	const Point3D &GetTranslation(void) const;
 
-		const Vector3D& operator [] (int j) const;
+	void SetTranslation(const Point3D &p);
 
-		const Point3D& GetTranslation(void) const;
+	Transform4D Inverse(const Transform4D &H);
 
-		void SetTranslation(const Point3D& p);
+	friend Transform4D operator*(const Transform4D &lhs, const Transform4D &rhs);
 
-		Transform4D Inverse(const Transform4D& H);
+	friend Vector3D operator*(const Transform4D &H, const Vector3D &v);
 
-		friend Transform4D operator * (const Transform4D& lhs, const Transform4D& rhs);
+	friend Point3D operator*(const Transform4D &H, const Point3D &p);
 
-		friend Vector3D operator * (const Transform4D& H, const Vector3D& v);
-
-		friend Point3D operator * (const Transform4D& H, const Point3D& p);
-
+	friend Vector3D operator*(const Vector3D& vector, const Transform4D& H);
 };

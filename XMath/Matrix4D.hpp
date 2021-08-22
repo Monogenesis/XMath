@@ -3,34 +3,29 @@
 
 struct Matrix4D
 {
-	private:
+private:
+	float n[4][4]; // Column major order
 
-		float n[4][4]; // Column major order
+public:
+	Matrix4D() = default;
 
-	public:
+	Matrix4D(
+		float n00, float n01, float n02, float n03,
+		float n10, float n11, float n12, float n13,
+		float n20, float n21, float n22, float n23,
+		float n30, float n31, float n32, float n33);
 
-		Matrix4D() = default;
+	Matrix4D(const Matrix4D &matrix);
 
-		Matrix4D(
-			float n00, float n01, float n02, float n03,
-			float n10, float n11, float n12, float n13,
-			float n20, float n21, float n22, float n23,
-			float n30, float n31, float n32, float n33);
+	float &operator()(int i, int j);
 
-		Matrix4D(const Matrix4D& matrix);
+	const float &operator()(int i, int j) const;
 
-		float& operator () (int i, int j);
+	Vector3D &operator[](int j);
 
-		const float& operator () (int i, int j) const;
+	const Vector3D &operator[](int j) const;
 
-		Vector3D& operator [] (int j);
+	friend Matrix4D Inverse(const Matrix4D &matrix);
 
-		const Vector3D& operator [] (int j) const;
-
-		friend Matrix4D Inverse(const Matrix4D& matrix);
-
-		friend std::ostream& operator<<(std::ostream& stream, const Matrix4D& vector);
-
-
+	friend std::ostream &operator<<(std::ostream &stream, const Matrix4D &vector);
 };
-
